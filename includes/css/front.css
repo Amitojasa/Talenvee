@@ -1,0 +1,18 @@
+.back{
+    background-image:url("../../images/front2.jpg");
+    height:88vh;
+    width:100%;
+    background-size:cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+}
+h1{
+    color:white;
+    background-color: rgba(0,0,0,.5);
+    display:inline;
+    font-size:60px;
+    padding:10px 20px;
+    text-align:center;
+}

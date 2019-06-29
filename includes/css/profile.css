@@ -1,0 +1,58 @@
+#profile-header{
+    
+}
+#profile-pic{
+    width:150px;
+    height:150px;
+    /* border:3px solid rgb(223, 56, 56); */
+
+}
+#interest-body>*{
+    padding-right: 3px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding-left: 3px;
+    margin: 3px;
+    border-radius: 5px;
+}
+#post-tags>*{
+    padding-right: 3px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding-left: 3px;
+    margin: 3px;
+    border-radius: 5px;
+}
+.icons{
+    font-size:20px;
+}
+.single-comment>*{
+    display:inline;
+}
+#post-pic{
+    max-height:400px;
+}
+.post{
+    text-align: center;
+}
+.captions,.comments,.tags{
+    font-size:14px;
+}
+#profile-name:hover{
+    text-decoration:none;
+}
+#desc-form{
+    display:none;
+}
+#username-form{
+    display:none;
+}
+#interest-form{
+    display:none;
+}
+.closer{
+    display:none;
+}
+.col-5>small.text-secondary{
+    font-size: 13px;
+}

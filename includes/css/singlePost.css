@@ -1,0 +1,9 @@
+.tab-pane1{
+    height:170vh;
+    overflow: scroll;
+    font-size:14px;
+}
+
+.col-5>small.text-secondary{
+    font-size: 13px;
+}

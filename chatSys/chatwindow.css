@@ -1,0 +1,49 @@
+#chat-body{
+    height:80vh;
+}
+#chat-msgs{
+    overflow:auto;
+}
+
+.from{
+    background-color: #74B9FF;
+    max-width:70%;
+    display:flex;
+    flex-direction: column;
+    border-radius:5px;
+
+}
+.from strong{
+    font-size: 13px;
+    float:left;
+    display: flex;
+}
+.to{
+    background-color: #A4B0BD;
+    max-width:70%;
+    display:flex;
+    flex-direction: column;
+    border-radius:5px;
+
+}
+.to strong{
+    font-size: 13px;
+    float:left;
+    display: flex;
+}
+/* 
+.from>*{
+    display: block;
+    float: right;
+} */
+
+.single-msg .date{
+    float: right;
+    font-size: 13px;
+    color:white;
+    
+}
+.msg-txt{
+    text-align: justify;
+}
+
