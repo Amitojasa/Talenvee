@@ -81,6 +81,7 @@
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">+</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" onclick="deletePost(<?php echo $pid;?>);">Delete</a>
+                            <a class="dropdown-item" href="editSinglePost.php?pid=<?php echo $pid;?>">Edit</a>
                         </div>
                     </div>
                     <div class="post">

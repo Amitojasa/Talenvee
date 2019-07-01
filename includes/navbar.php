@@ -21,13 +21,13 @@ function searchUser (search_str){
     }
 
     
-    $nq=mysqli_query($conn,"select * from notification where toId=$uid and status=0 limit 1") or die(error_page());
-    if(mysqli_num_rows($nq)){
-        $noti=true;
-    }else{
+    // $nq=mysqli_query($conn,"select * from notification where toId=$uid and status=0 limit 1") or die(error_page());
+    // if(mysqli_num_rows($nq)){
+    //     $noti=true;
+    // }else{
         
         $noti=false;
-    }
+    // }
 
 
 ?>
