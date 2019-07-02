@@ -54,6 +54,9 @@ function searchUser (search_str){
         <li class="nav-item">
             <a class="nav-link<?php if($chat) echo ' activate-border border';?>" href="chat.php">Chat</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="compete.php">Compete</a>
+        </li>
     </ul>
     
     <ul class="navbar-nav ml-auto">
