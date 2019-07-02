@@ -45,6 +45,7 @@ return $content;
         $userName=$s['username'];
         $nav='navbar.php';
         $profile=$s['profilepic'];
+        
 	}else{
         $login=false;
         $userName="My Account";

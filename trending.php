@@ -1,7 +1,7 @@
 <!-- <div class="tab-pane container fade" id="interestedTags"> -->
                         <?php
                         
-                            $query=mysqli_query($conn,"SELECT * FROM `posts` order by rating desc, id desc") or die(error_page());
+                            $query=mysqli_query($conn,"SELECT * FROM `posts`type!='compete' order by rating desc, id desc ") or die(error_page());
                             while($r=mysqli_fetch_assoc($query)){
                                 $pid=$r['id'];
                         ?>

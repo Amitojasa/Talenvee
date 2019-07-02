@@ -8,7 +8,7 @@
                             $sqls="";
 
                             foreach($interestsArray as $i){
-                                $sqls .= "union SELECT * FROM `posts` where tags like '%$i%' ";
+                                $sqls .= "union SELECT * FROM `posts` where tags like '%$i%' and type!='compete' ";
                             }
                             if($sqls==""){
                                 echo "Please add interested tags in your profile";

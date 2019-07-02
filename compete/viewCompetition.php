@@ -1,10 +1,25 @@
 <link rel="stylesheet" href="includes/css/profile.css">
+<script src="includes/js/profile.js"></script>
 <div class="container-fluid">
+<?php 
+    $lUserId=$_SESSION['userid'];
+    $compId=mysqli_real_escape_string($conn,$_GET['id']);
+?>
+<?php 
+    $query=mysqli_query($conn,"select * from competition where id=$compId") or die(erro_page());
+    $rs=mysqli_fetch_assoc($query);
+    $user1=$rs['user1'];
+    $user2=$rs['user2'];
+    $post1=$rs['post1'];
+    $post2=$rs['post2'];
+
+    
+?>
     <div class="row">
         <div class="col-md-6">
                         <?php
-                        
-                            $query=mysqli_query($conn,"SELECT * FROM `posts` where id=15") or die(error_page());
+                            
+                            $query=mysqli_query($conn,"SELECT * FROM `posts` where id=$post1") or die(error_page());
                             while($r=mysqli_fetch_assoc($query)){
                                 $pid=$r['id'];
                         ?>
@@ -120,7 +135,7 @@
         <div class="col-md-6">
                         <?php
                         
-                            $query=mysqli_query($conn,"SELECT * FROM `posts` where id=18") or die(error_page());
+                            $query=mysqli_query($conn,"SELECT * FROM `posts` where id=$post2") or die(error_page());
                             while($r=mysqli_fetch_assoc($query)){
                                 $pid=$r['id'];
                         ?>
@@ -235,3 +250,29 @@
         </div>
     </div>
 </div>
+<script>
+ $('textarea.mention').bind('input', function(e) { 
+                    var ua = navigator.userAgent.toLowerCase(); 
+                    var isAndroid = ua.indexOf('android') > -1;
+                    //&& ua.indexOf(\'mobile\'); 
+                    if(isAndroid) { 
+                        var char = this.value.charCodeAt(this.value.length - 1); //$scope.data = char; 
+                        if(e.keyCode === undefined){ 
+                            e.keyCode = char; 
+                        } 
+                    return true; 
+                    } 
+                });
+
+    $('textarea.mention').mentionsInput({
+onDataRequest:function (mode, query, callback) {
+
+$.getJSON('newTest/get_users_json.php', function(responseData) {
+    responseData = _.filter(responseData, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+callback.call(this, responseData);
+});
+}
+});
+
+</script>  
+

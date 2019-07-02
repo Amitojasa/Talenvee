@@ -3,7 +3,7 @@
                             $rf=mysqli_fetch_assoc($queryf)['following'];
                             $followersArray=json_decode($rf);
                             $sqlArray = '(' . join(',', $followersArray) . ')';
-                            $query=mysqli_query($conn,"select * from posts where authorId in $sqlArray order by id desc");// or die(error_page());
+                            $query=mysqli_query($conn,"select * from posts where authorId in $sqlArray and type!='compete' order by id desc");// or die(error_page());
                             if(!$query){ echo("You are not following anyone");return;}
                             while($r=mysqli_fetch_assoc($query)){
                                 $pid=$r['id'];

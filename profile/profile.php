@@ -95,7 +95,7 @@
         </div>
         <div class="col-md-8 border my-3 rounded">
             <?php 
-                $query=mysqli_query($conn,"select * from posts where authorId=$userId order by id desc") or die(error_page());
+                $query=mysqli_query($conn,"select * from posts where authorId=$userId and type!='compete' order by id desc") or die(error_page());
                 while($r=mysqli_fetch_assoc($query)){
                     $pid=$r['id'];
             ?>
