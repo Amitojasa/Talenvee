@@ -6,16 +6,73 @@
     $compId=mysqli_real_escape_string($conn,$_GET['id']);
 ?>
 <?php 
-    $query=mysqli_query($conn,"select * from competition where id=$compId") or die(erro_page());
+    $query=mysqli_query($conn,"select *,now() as n from competition where id=$compId") or die(error_page());
     $rs=mysqli_fetch_assoc($query);
     $user1=$rs['user1'];
     $user2=$rs['user2'];
     $post1=$rs['post1'];
     $post2=$rs['post2'];
+    $winner=$rs['winner'];
+    $time=$rs['startTime'];
+    $status=$rs['status'];
+    $t2=$rs['n'];
+    $dif=strtotime($t2)-strtotime($time);
+    $result=0;
+    $winPost=$rs['winPost'];
+    if($status==1){
+        if($dif/86400>1){
+            global $winPost;
+            $result=1;
+            $quer1=mysqli_query($conn,"select id,rating from posts where id=$post1") or die(error_page());
+            $rqs1=mysqli_fetch_assoc($quer1);
+            $rating1=$rqs1['rating'];
+            $quer2=mysqli_query($conn,"select id,rating from posts where id=$post2") or die(error_page());
+            $rqs2=mysqli_fetch_assoc($quer2);
+            $rating2=$rqs2['rating'];
+            if($rating1 > $rating2){
+                $winner=$user1;
+                $winPost=$post1;
+            }elseif($rating2 > $rating1){
+                $winner=$user2;
+                $winPost=$post2;
+            }else{
+                $querc1=mysqli_query($conn,"select count(*) as c from comments where postId=$post1") or die(error_page());
+                $rqsc1=mysqli_fetch_assoc($querc1);
+                $rating1=$rating1+$rqsc1['c'];
+
+                $querc2=mysqli_query($conn,"select count(*) as c from comments where postId=$post2") or die(error_page());
+                $rqsc1=mysqli_fetch_assoc($querc2);
+                $rating2=$rating2+$rqsc1['c'];
+                if($rating1 > $rating2){
+                    $winner=$user1;
+                    $winPost=$post1;
+                }elseif($rating2 > $rating1){
+                    $winner=$user2;
+                    $winPost=$post2;
+                }
+
+            }
+
+            mysqli_query($conn,"update competition set status=0,winner=$winner,winPost=$winPost  where id=$compId") or die(error_page());
+            echo "<div class='alert alert-danger my-2'>Competition is over and result is out</div>";
+        }
+    }else{
+        echo "<div class='alert alert-danger my-2'>Competition is over and result is out</div>";
+        $result=1;
+    }
+    
+    
+
+?>
+<?php
+        if($result==1){
+            echo "<div class='alert alert-warning my-2'><a href='single.php?pid=".$winPost."'>View</a> the <strong>winning</strong> post is </div>";
+        }
+    ?>
+    <div class="row">
 
     
-?>
-    <div class="row">
+
         <div class="col-md-6">
                         <?php
                             
