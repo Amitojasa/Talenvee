@@ -1,6 +1,20 @@
+<?php
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+	if (@$_SESSION['login']==false){
+	    echo "<script>alert('Please Login');</script>";
+		echo "<script>window.location.href='index.php';</script>";
+	}
+?>
 <link rel="stylesheet" href="includes/css/profile.css">
 <script src="includes/js/profile.js"></script>
 <div class="container border my-2">
+
+<div class="alert alert-danger m-2">
+    To compete contact us <a href="chat.php?user=talenvee">here</a>
+</div>
 
 <?php 
     $query=mysqli_query($conn,"select * from competition order by id desc") or die(error_page());
@@ -30,6 +44,12 @@
             </a>
         </div>
         <div class="right">
+            <?php if($rs['status']==0){?>
+                <a href="#" class="btn btn-outline-secondary">Ended</a>  
+            <?php }else{ ?>
+                <a href="#" class="btn btn-success">onGoing</a>  
+            <?php } ?>
+                  
             <a href="viewCompetition.php?id=<?php echo $rs['id'];?>" class="btn btn-primary">View</a>        
         </div>
 
@@ -48,64 +68,5 @@
 <?php
     }
 ?>
-
-<div class="card m-2">
-  <div class="card-header"><b>BeatBoxing</b></div>
-    <div class="card-body d-flex justify-content-between">
-        <div class="left d-flex">
-            <a class="mx-1" href="#">
-                <img class="img img-fluid rounded-circle" src="profile/profile_pics/<?php echo $profile;?>" style="width:25px;height:25px;"> <?php echo $userName; ?>
-            </a>
-            <h6 class="mx-2"> VS </h6>
-            <a class="mx-1" href="#">
-                <img class="img img-fluid rounded-circle" src="profile/profile_pics/<?php echo $profile;?>" style="width:25px;height:25px;"> <?php echo $userName; ?>
-            </a>
-        </div>
-        <div class="right">
-            <a href="#" class="btn btn-primary">View</a>        
-        </div>
-
-    </div> 
-    <div class="card-footer"> 
-        <div id="post-tags">
-            <?php 
-                // $tags=json_decode($r['tags']);
-                // foreach($tags as $i){ ?>
-                <div id="tags-tag" class="tag bg-primary text-white px-2"><?php// echo $i;?>Hello</div>
-                <div id="tags-tag" class="tag bg-primary text-white px-2"><?php// echo $i;?>beatboxing</div>
-                <div id="tags-tag" class="tag bg-primary text-white px-2"><?php// echo $i;?>competition ID</div>
-            <?php //} ?>
-        </div>
-    </div>
-</div>
-<div class="card m-2">
-  <div class="card-header"><b>BeatBoxing</b></div>
-    <div class="card-body d-flex justify-content-between">
-        <div class="left d-flex">
-            <a class="mx-1" href="#">
-                <img class="img img-fluid rounded-circle" src="profile/profile_pics/<?php echo $profile;?>" style="width:25px;height:25px;"> <?php echo $userName; ?>
-            </a>
-            <h6 class="mx-2"> VS </h6>
-            <a class="mx-1" href="#">
-                <img class="img img-fluid rounded-circle" src="profile/profile_pics/<?php echo $profile;?>" style="width:25px;height:25px;"> <?php echo $userName; ?>
-            </a>
-        </div>
-        <div class="right">
-            <a href="#" class="btn btn-primary">View</a>        
-        </div>
-
-    </div> 
-    <div class="card-footer"> 
-        <div id="post-tags">
-            <?php 
-                // $tags=json_decode($r['tags']);
-                // foreach($tags as $i){ ?>
-                <div id="tags-tag" class="tag bg-primary text-white px-2"><?php// echo $i;?>Hello</div>
-                <div id="tags-tag" class="tag bg-primary text-white px-2"><?php// echo $i;?>beatboxing</div>
-                <div id="tags-tag" class="tag bg-primary text-white px-2"><?php// echo $i;?>competition ID</div>
-            <?php //} ?>
-        </div>
-    </div>
-</div>
 
 </div>

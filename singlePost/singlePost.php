@@ -13,6 +13,10 @@
                 $query=mysqli_query($conn,"select * from posts where id=$postId") or die(error_page());
                 while($r=mysqli_fetch_assoc($query)){
                     $pid=$r['id'];
+                    if($r['type']=='compete'){
+                        echo "<div class='alert alert-danger'>This post is currently in competition. This post will be available after the competition get over.</div>";
+                        exit();
+                    }
             ?>
             <div class="card my-3">
                 <div class="card-header p-0 m-0">

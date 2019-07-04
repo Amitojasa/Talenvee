@@ -1,3 +1,13 @@
+<?php
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+	if (@$_SESSION['login']==false){
+	    echo "<script>alert('Please Login');</script>";
+		echo "<script>window.location.href='index.php';</script>";
+	}
+?>
 <link rel="stylesheet" href="includes/css/profile.css">
 <script src="includes/js/profile.js"></script>
 <div class="container-fluid">
@@ -54,6 +64,7 @@
             }
 
             mysqli_query($conn,"update competition set status=0,winner=$winner,winPost=$winPost  where id=$compId") or die(error_page());
+            mysqli_query($conn,"update posts set type='general' where id in ($post1,$post2)") or die(error_page());
             echo "<div class='alert alert-danger my-2'>Competition is over and result is out</div>";
         }
     }else{

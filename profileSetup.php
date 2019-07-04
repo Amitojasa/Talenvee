@@ -3,7 +3,7 @@
     { 
         session_start(); 
     } 
-	if (@$_SESSION['login']==true){
+	if (@$_SESSION['login']==false){
 	    echo "<script>alert('Please Login');</script>";
 		header("Location: index.php");
 		exit;
